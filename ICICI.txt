@@ -1,0 +1,48 @@
+// created by kolikineni
+//Declare global variables:
+
+var targetNumber=Math.floor(1+(Math.random()*1000));
+//(min+(rand*range)gives you rand between X&Y
+var tryCount=10;
+
+function start(){
+document.getElementById("playButton").addEventListenerstener("click",play,flase);
+
+}// end functionstart
+function play(){
+varNumberEntered=document.getElementById("playTextBox").value;
+if(tryCount!=0){
+//decrement try:
+tryCount-=1;
+if(!isNaN(numberEntered)){
+
+//number entered.compare
+switch(true){
+case(numberEntered==targetNumber):
+document.getElementById("playResult").innerHTML="jackpot!You guessed it right in "+(10-tryCount)+"tries!!";
+
+// disable the textbox.
+document.getElementById("playButton").disabled=true;
+break;
+case (numberEntered>targetNumber):
+document.getElementById("playResult").innerHTML="Too High.You have "+tryCount+" more tries left!";
+break;
+case (numberEntered<targetNumber):
+document.getElementById("playResult").innerHTML="Too low.You have"+tryCount+" more tries left!;
+break;
+
+}// end switch
+}else{
+	document.getElementById("playResult").innerHTML="Sorry Try again.This time enter a valid number between 100 and 1000.you have "+tryCount+"moretries!"
+	
+}//end validation if/else
+}else{
+	document.getElementById("playResult").innerHTML="Out of tries&amp;Out of Luck.OOOOppaaa!!!! Refresh page.";
+	document.getElementById(""playResult).diabled=true;
+	
+}//end if
+}//end function play
+
+// event listener for page load
+window.addEventListenerstener("load",start,false);
+
